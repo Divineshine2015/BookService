@@ -6,15 +6,14 @@ namespace BookService.Migrations
     using System.Linq;
     using BookService.Models;
 
-
-    internal sealed class Configuration : DbMigrationsConfiguration<BookService.Models.ApplicationDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<BookService.Models.BookServiceContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(BookService.Models.ApplicationDbContext context)
+        protected override void Seed(BookService.Models.BookServiceContext context)
         {
             //  This method will be called after migrating to the latest version.
 
