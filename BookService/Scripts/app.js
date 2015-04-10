@@ -5,8 +5,8 @@
     self.detail = ko.observable();
     self.authors = ko.observableArray();
 
+
     var booksUri = '/api/books/';
-    var authorsUri = '/api/authors/';
 
     function ajaxHelper(uri, method, data) {
         self.error(''); // Clear error message
@@ -32,11 +32,23 @@
             self.detail(data);
         });
     }
+    self.authors = ko.observableArray();
+    self.newBook = {
+        Author: ko.observable(),
+        Genre: ko.observable(),
+        Price: ko.observable(),
+        Title: ko.observable(),
+        Year: ko.observable()
+    }
+
+    var authorsUri = '/api/authors/';
+
     function getAuthors() {
         ajaxHelper(authorsUri, 'GET').done(function (data) {
             self.authors(data);
         });
     }
+
     self.addBook = function (formElement) {
         var book = {
             AuthorId: self.newBook.Author().Id,
@@ -51,11 +63,9 @@
         });
     }
 
-    
-
+    getAuthors();
     // Fetch the initial data.
     getAllBooks();
-    getAuthors();
 
 
 };
