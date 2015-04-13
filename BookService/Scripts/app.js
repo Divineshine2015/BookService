@@ -31,7 +31,7 @@
         ajaxHelper(booksUri + item.Id, 'GET').done(function (data) {
             self.detail(data);
         });
-    }
+    };
     self.authors = ko.observableArray();
     self.newBook = {
         Author: ko.observable(),
@@ -39,7 +39,7 @@
         Price: ko.observable(),
         Title: ko.observable(),
         Year: ko.observable()
-    }
+    };
 
     var authorsUri = '/api/authors/';
 
@@ -61,7 +61,7 @@
         ajaxHelper(booksUri, 'POST', book).done(function (item) {
             self.books.push(item);
         });
-    }
+    };
 
     getAuthors();
     // Fetch the initial data.

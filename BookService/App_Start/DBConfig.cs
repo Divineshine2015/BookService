@@ -1,33 +1,19 @@
-namespace BookService.Migrations
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Data.Entity.Migrations;
+using BookService.Models;
+
+namespace BookService.App_Start
 {
-    using System;
-    using System.Data.Entity;
-    using System.Data.Entity.Migrations;
-    using System.Linq;
-    using BookService.Models;
-
-    internal sealed class Configuration : DbMigrationsConfiguration<BookService.Models.BookServiceContext>
+    public class DbConfig
     {
-        public Configuration()
-        {
-            AutomaticMigrationsEnabled = false;
-        }
 
-        protected override void Seed(BookService.Models.BookServiceContext context)
-        {
-            //  This method will be called after migrating to the latest version.
+        internal static void SeedIfNotEmpty(BookService.Models.BookServiceContext context)
+    {
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
-            context.Authors.AddOrUpdate(x => x.Id,
+          context.Authors.AddOrUpdate(x => x.Id,
         new Author() { Id = 1, Name = "Jane Austen" },
         new Author() { Id = 2, Name = "Charles Dickens" },
         new Author() { Id = 3, Name = "Miguel de Cervantes" }
@@ -71,7 +57,9 @@ namespace BookService.Migrations
                     Genre = "Picaresque"
                 }
                 );
-            
-        }
+        context.SaveChanges();
+    }
+
+        
     }
 }
